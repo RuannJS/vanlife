@@ -23,9 +23,6 @@ export class UserGuard implements CanActivate {
     );
 
     //  If there is no @Roles()
-    if (!requiredRole) {
-      return true;
-    }
 
     const request = context.switchToHttp().getRequest();
 
@@ -33,12 +30,12 @@ export class UserGuard implements CanActivate {
 
     try {
       const decoded = jwt.verify(token, process.env.USER_KEY) as DecodedJwt;
-      console.log(requiredRole);
-      console.log(decoded);
+
+      if (!requiredRole) return true;
 
       return requiredRole.some((role) => role === decoded.role);
     } catch (err) {
-      throw new UnauthorizedException('User has no permission');
+      throw new UnauthorizedException('User has no authorization');
     }
   }
 }

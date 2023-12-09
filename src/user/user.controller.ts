@@ -26,7 +26,7 @@ export class UserController {
     private readonly auth: AuthService,
   ) {}
 
-  //                      AUTHENTICATION ROUTES
+  //                    NO  AUTHENTICATION ROUTES
 
   @Post('signup')
   async signupUser(@Body() data: UserSignupDto): Promise<User> {
@@ -38,13 +38,13 @@ export class UserController {
     return await this.auth.signinUser(data);
   }
 
-  //                  AUTHORIZATION ROUTES
+  //                 AUTHORIZATION ROUTES
 
-  @Roles(UserRole.HOST)
+  @Roles(UserRole.CONSUMER, UserRole.HOST)
   @UseGuards(UserGuard)
   @UseInterceptors(TokenInterceptor)
   @Get('info')
-  async getUserInformation(@TokenDecorator() user: DecodedJwt) {
-    return 'user information';
+  async getUserInformation(@TokenDecorator() user: DecodedJwt): Promise<User> {
+    return await this.user.getUserInformation(user);
   }
 }
