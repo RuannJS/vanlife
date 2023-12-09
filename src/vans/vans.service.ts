@@ -4,9 +4,9 @@ import {
   NotFoundException,
   UnauthorizedException,
 } from '@nestjs/common';
-import { PrismaService } from 'src/prisma/prisma.service';
+import { PrismaService } from '../prisma/prisma.service';
 import { AddVanDto } from './dto/add-van.dto';
-import { DecodedJwt } from 'src/user/util/decoded-jwt';
+import { DecodedJwt } from '../user/util/decoded-jwt';
 import { Van } from './util/van.entity';
 import { UpdateVanDto } from './dto/update-van.dto';
 

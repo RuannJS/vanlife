@@ -10,26 +10,26 @@ import { VanType } from '@prisma/client';
 export class UpdateVanDto {
   @IsString()
   @IsOptional()
-  name: string;
+  name?: string;
 
   @IsNumber()
   @IsOptional()
-  price: number;
+  price?: number;
 
   @IsString()
   @IsOptional()
-  description: string;
+  description?: string;
 
   @IsString()
   @IsOptional()
-  imageUrl: string;
+  imageUrl?: string;
 
   @IsEnum(VanType)
   @IsOptional()
-  type: VanType;
+  type?: VanType;
 
   @IsArray({ each: true })
   @IsString()
   @IsOptional()
-  photos: string[];
+  photos?: string[];
 }

@@ -59,7 +59,10 @@ export class VansController {
   @UseGuards(UserGuard)
   @UseInterceptors(TokenInterceptor)
   @Post('add')
-  async addVan(@Body() data: AddVanDto, @TokenDecorator() host: DecodedJwt) {
+  async addVan(
+    @Body() data: AddVanDto,
+    @TokenDecorator() host: DecodedJwt,
+  ): Promise<Van> {
     return await this.service.addVan(data, host);
   }
 
@@ -71,7 +74,7 @@ export class VansController {
     @Body() data: UpdateVanDto,
     @TokenDecorator() host: DecodedJwt,
     @Param('vanId') vanId: string,
-  ) {
+  ): Promise<Van> {
     return await this.service.updateVan(data, host, vanId);
   }
 

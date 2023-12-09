@@ -4,7 +4,6 @@ import { PrismaService } from '../../prisma/prisma.service';
 import { User } from '../util/user.entity';
 import { ObjectId } from 'mongodb';
 import { UserSigninDto } from './dto/user-signin.dto';
-import { Token } from '../util/token.jwt';
 
 describe('AuthService', () => {
   let service: AuthService;
