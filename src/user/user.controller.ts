@@ -13,10 +13,10 @@ import { User } from './util/user.entity';
 import { UserSigninDto } from './auth/dto/user-signin.dto';
 import { Token } from './util/token.jwt';
 import { UserGuard } from '../guards/user/user.guard';
-import { Roles } from 'src/decorators/roles/role.decorator';
+import { Roles } from '../decorators/roles/role.decorator';
 import { UserRole } from '@prisma/client';
-import { TokenInterceptor } from 'src/interceptors/token/token.interceptor';
-import { TokenDecorator } from 'src/decorators/token/token.decorator';
+import { TokenInterceptor } from '../interceptors/token/token.interceptor';
+import { TokenDecorator } from '../decorators/token/token.decorator';
 import { DecodedJwt } from './util/decoded-jwt';
 
 @Controller('user')

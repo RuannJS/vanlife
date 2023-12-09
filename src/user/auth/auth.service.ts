@@ -3,7 +3,7 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { PrismaService } from 'src/prisma/prisma.service';
+import { PrismaService } from '../../prisma/prisma.service';
 import { UserSignupDto } from './dto/user-signup.dto';
 import { UserSigninDto } from './dto/user-signin.dto';
 import * as bcrypt from 'bcrypt';
@@ -21,7 +21,7 @@ export class AuthService {
       },
     });
 
-    if (user) {
+    if (user.email === data.email) {
       throw new ConflictException('Email is already in use!');
     }
 

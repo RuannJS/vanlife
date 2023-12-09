@@ -7,9 +7,9 @@ import {
 import { Observable } from 'rxjs';
 import { Reflector } from '@nestjs/core';
 import { UserRole } from '@prisma/client';
-import { ROLES_KEY } from 'src/decorators/roles/role.decorator';
+import { ROLES_KEY } from '../../decorators/roles/role.decorator';
 import * as jwt from 'jsonwebtoken';
-import { DecodedJwt } from 'src/user/util/decoded-jwt';
+import { DecodedJwt } from '../../user/util/decoded-jwt';
 
 @Injectable()
 export class UserGuard implements CanActivate {
