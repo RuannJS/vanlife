@@ -18,7 +18,7 @@ export class VansService {
     let numberTake = 0;
     let numberSkip = 0;
 
-    take === undefined ? (numberTake = 5) : (numberTake = Number(take));
+    take === undefined ? (numberTake = 10) : (numberTake = Number(take));
 
     skip === undefined ? (numberSkip = 0) : (numberSkip = Number(skip));
 

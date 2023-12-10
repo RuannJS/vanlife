@@ -24,6 +24,7 @@ describe('VansService', () => {
       price: 10,
       hostId: mockUser.id,
       type: 'luxury',
+      imageUrl: 'a',
     },
     {
       id: '3',
@@ -31,6 +32,7 @@ describe('VansService', () => {
       price: 20,
       hostId: mockUser.id,
       type: 'simple',
+      imageUrl: 'a',
     },
     {
       id: '4',
@@ -38,6 +40,7 @@ describe('VansService', () => {
       price: 30,
       hostId: mockUser.id,
       type: 'rugged',
+      imageUrl: 'a',
     },
   ];
 

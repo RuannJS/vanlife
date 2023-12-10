@@ -5,5 +5,6 @@ export class Van {
   price: number;
   name: string;
   type: VanType;
+  imageUrl: string;
   hostId: string;
 }
