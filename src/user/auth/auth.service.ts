@@ -21,7 +21,7 @@ export class AuthService {
       },
     });
 
-    if (user.email === data.email) {
+    if (user) {
       throw new ConflictException('Email is already in use!');
     }
 

@@ -9,12 +9,13 @@ import { AddVanDto } from './dto/add-van.dto';
 import { DecodedJwt } from '../user/util/decoded-jwt';
 import { Van } from './util/van.entity';
 import { UpdateVanDto } from './dto/update-van.dto';
+import { VanResponse } from './util/van.response';
 
 @Injectable()
 export class VansService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async listAllVans(take: string, skip: string): Promise<Van[]> {
+  async listAllVans(take: string, skip: string): Promise<VanResponse[]> {
     let numberTake = 0;
     let numberSkip = 0;
 
@@ -25,6 +26,14 @@ export class VansService {
     const vanList = await this.prisma.van.findMany({
       take: numberTake,
       skip: numberSkip,
+      select: {
+        name: true,
+        price: true,
+        type: true,
+        imageUrl: true,
+        id: true,
+        host: true,
+      },
     });
 
     return vanList;

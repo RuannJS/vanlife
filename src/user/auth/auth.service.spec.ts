@@ -11,7 +11,7 @@ describe('AuthService', () => {
 
   const mockUser: User = {
     name: 'mocked-user',
-    email: 'mocked@email.com',
+    email: 'new@mock.com',
     password: '$2b$10$uNM8b2q8kq6I8Xo5fk11v.m/bmsTwnc6WtG3hrzTV7O2Vw09iPLr6',
     role: 'CONSUMER',
     id: new ObjectId().toString(),
@@ -45,11 +45,10 @@ describe('AuthService', () => {
     it('should return a new user', async () => {
       const user = await service.signupUser({
         name: 'newMock',
-        email: 'new@mock.com',
+        email: 'notanemail@email.com',
         password: '12345',
         role: 'CONSUMER',
       });
-
       expect(user).toEqual(mockUser);
     });
   });

@@ -22,19 +22,18 @@ export class UserGuard implements CanActivate {
       [context.getHandler(), context.getClass()],
     );
 
-    //  If there is no @Roles()
-
     const request = context.switchToHttp().getRequest();
 
     const token = request?.headers?.authorization?.split(' ')[1];
 
     try {
       const decoded = jwt.verify(token, process.env.USER_KEY) as DecodedJwt;
-
+      //  If there is no @Roles()
       if (!requiredRole) return true;
 
       return requiredRole.some((role) => role === decoded.role);
     } catch (err) {
+      console.log(err);
       throw new UnauthorizedException('User has no authorization');
     }
   }

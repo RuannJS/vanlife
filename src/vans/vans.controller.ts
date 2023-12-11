@@ -20,6 +20,7 @@ import { DecodedJwt } from '../user/util/decoded-jwt';
 import { AddVanDto } from './dto/add-van.dto';
 import { Van } from './util/van.entity';
 import { UpdateVanDto } from './dto/update-van.dto';
+import { VanResponse } from './util/van.response';
 
 @Controller('vans')
 export class VansController {
@@ -31,16 +32,14 @@ export class VansController {
   async listAllVans(
     @Query('take') take: string,
     @Query('skip') skip: string,
-  ): Promise<Van[]> {
+  ): Promise<VanResponse[]> {
     return this.service.listAllVans(take, skip);
   }
 
-  //                                      CONSUMER ONLY ROUTES
-
-  @Roles(UserRole.CONSUMER)
+  @Roles(UserRole.CONSUMER, UserRole.HOST)
   @UseGuards(UserGuard)
   @UseInterceptors(TokenInterceptor)
-  @Get(':vanId')
+  @Get('van/:vanId')
   async getVanById(@Param('vanId') vanId: string) {
     return await this.service.getVanById(vanId);
   }
