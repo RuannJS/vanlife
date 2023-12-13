@@ -33,13 +33,12 @@ export class VansService {
         imageUrl: true,
         id: true,
         host: true,
+        isRented: true,
       },
     });
 
     return vanList;
   }
-
-  //                                    CONSUMER ONLY SERVICES
 
   async getVanById(vanId: string) {
     const van = await this.prisma.van.findUnique({ where: { id: vanId } });
@@ -49,11 +48,35 @@ export class VansService {
     return van;
   }
 
+  //                                    CONSUMER ONLY SERVICES
+
+  async rentVan(vanId: string): Promise<void> {
+    const van = await this.prisma.van.findUnique({ where: { id: vanId } });
+
+    if (!van) throw new NotFoundException('Van was not found');
+
+    await this.prisma.van.update({
+      where: { id: vanId },
+      data: { isRented: !van.isRented },
+    });
+  }
+
   //                                    HOST ONLY SERVICES
 
   authorizedHost = async (email: string) => {
     return await this.prisma.user.findUnique({ where: { email } });
   };
+
+  async releaseVan(vanId: string): Promise<void> {
+    const van = await this.prisma.van.findUnique({ where: { id: vanId } });
+
+    if (!van) throw new NotFoundException('Van was not found');
+
+    await this.prisma.van.update({
+      where: { id: vanId },
+      data: { isRented: !van.isRented },
+    });
+  }
 
   async listHostVans(host: DecodedJwt): Promise<Van[]> {
     const authorizedHost = await this.authorizedHost(host.email);

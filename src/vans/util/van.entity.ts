@@ -7,4 +7,5 @@ export class Van {
   type: VanType;
   imageUrl: string;
   hostId: string;
+  isRented: boolean;
 }

@@ -36,6 +36,8 @@ export class VansController {
     return this.service.listAllVans(take, skip);
   }
 
+  //                                     ROUTES
+
   @Roles(UserRole.CONSUMER, UserRole.HOST)
   @UseGuards(UserGuard)
   @UseInterceptors(TokenInterceptor)
@@ -44,7 +46,24 @@ export class VansController {
     return await this.service.getVanById(vanId);
   }
 
+  //                                       CONSUMER ONLY
+
+  @Roles(UserRole.CONSUMER)
+  @UseGuards(UserGuard)
+  @Put('van/rent/:vanId')
+  async rentVan(@Param('vanId') vanId: string): Promise<void> {
+    return await this.service.rentVan(vanId);
+  }
+
   //                                     HOST ONLY ROUTES
+
+  @Roles(UserRole.HOST)
+  @UseGuards(UserGuard)
+  @UseInterceptors(TokenInterceptor)
+  @Put('van/release/:vanId')
+  async releaseVan(@Param('vanId') vanId: string): Promise<void> {
+    return await this.service.releaseVan(vanId);
+  }
 
   @Roles(UserRole.HOST)
   @UseGuards(UserGuard)

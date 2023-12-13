@@ -32,6 +32,8 @@ model Van {
 
   host   User   @relation(fields: [hostId], references: [id])
   hostId String @db.ObjectId
+
+  isRented Boolean @default(false)
 }
 
 model User {
